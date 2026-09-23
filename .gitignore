@@ -1,0 +1,14 @@
+# Your collection - never commit
+Collections/
+CoinImages/
+Backups/
+Reports/
+ValueHistory.csv
+CoinCollection.csv
+*.xlsm
+*.xlsx
+
+# Compiled on first launch
+ImagePathConverter.dll
+*.exe
+*.zip

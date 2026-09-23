@@ -1,0 +1,1024 @@
+================================================================================
+  UNITED STATES COIN COLLECTION DASHBOARD  -  USER MANUAL  v4.1.0
+================================================================================
+
+  Table of Contents
+  -----------------
+  1.  Getting Started
+  2.  Application Layout
+  3.  Title Banner & Collection Switcher
+  4.  Dashboard Stat Cards
+  5.  Toolbar Buttons
+  6.  Search & Filter Bar
+  7.  Coin Data Grid
+  8.  Left-Side Coin Form (Add / Edit)
+  9.  Coin Images
+  10. Reports & Printing
+  11. Backup & Restore
+  12. Import from Excel
+  13. Import / Export CSV
+  14. Keyboard Shortcuts
+  15. Context Menu (Right-Click)
+  16. Certification Verification
+  17. Online Research Links
+  18. Melt Value Calculator
+  19. Charts & Analytics
+  20. 2x2 Flip Label Printing
+  21. Variety & Error Coin Tracking
+  22. Insurance / Appraisal Report
+  23. Set Completion Tracking
+  24. PCGS Certification Lookup
+  25. Value History Tracking
+  26. File Locations & Data Storage
+  27. Performance & Speed
+  28. Troubleshooting
+
+================================================================================
+1.  GETTING STARTED
+================================================================================
+
+  Requirements:
+  - Windows 10 or later
+  - PowerShell 5.1 (built into Windows)
+  - .NET Framework 4.5+ (built into Windows)
+  - Microsoft Excel (only needed for Excel import feature)
+
+  How to Launch:
+  1. Open PowerShell (right-click Start > Windows PowerShell)
+  2. Navigate to the folder: cd C:\code\coin
+  3. Run the script:  .\CoinCollection.ps1
+
+  Alternatively, right-click "CoinCollection.ps1" and choose
+  "Run with PowerShell".
+
+  First Time:
+  When you first launch the application it will:
+  - Create a "Collections" folder to store your data
+  - Create a default collection called "MyCoins"
+  - Create an automatic backup
+  - Show an empty dashboard ready for you to add coins
+
+================================================================================
+2.  APPLICATION LAYOUT
+================================================================================
+
+  The application window is divided into several areas:
+
+  +---------------------------------------------------------------+
+  | TITLE BANNER (dark teal) - app name, collection switcher      |
+  +------------+--------------------------------------------------+
+  |            | DASHBOARD STAT CARDS (9 clickable cards)          |
+  |   LEFT     |--------------------------------------------------+
+  |   FORM     | TOOLBAR (buttons for all major actions)           |
+  |   PANEL    |--------------------------------------------------+
+  |   (Add/    | SEARCH BAR (filter by year, mint, denom, etc.)   |
+  |    Edit)   |--------------------------------------------------+
+  |            |                                                    |
+  |  335px     |          COIN DATA GRID                           |
+  |  wide      |     (sortable, scrollable table of all coins)     |
+  |            |                                                    |
+  +------------+--------------------------------------------------+
+  | STATUS BAR - messages, version info                            |
+  +---------------------------------------------------------------+
+
+================================================================================
+3.  TITLE BANNER & COLLECTION SWITCHER
+================================================================================
+
+  The dark teal banner at the top shows:
+  - Application title: "United States Coin Collection Dashboard"
+  - Subtitle: "Circulated Condition"
+  - Coin count on the right (e.g. "1486 coins")
+
+  COLLECTION SWITCHER (top right):
+  You can maintain multiple separate collections (e.g. one for
+  your personal coins, one for coins you want to buy, etc.)
+
+  - Dropdown: Select which collection to view/edit
+  - [+] button: Create a new empty collection
+  - [-] button: Delete the current collection (cannot delete the
+    last remaining collection; you'll be asked to confirm)
+
+  When you switch collections, the grid reloads with that
+  collection's data and the form clears.
+
+================================================================================
+4.  DASHBOARD STAT CARDS
+================================================================================
+
+  Nine stat cards appear in a row below the title banner. Each card
+  shows a live statistic computed from your current collection data.
+
+  +----------+----------+----------+----------+-----------+
+  | Holding  | Missing  | Minted   | Hold %   | Book Val  |
+  |   1486   |   8322   |   9808   |  15.2%   |  $32,450  |
+  +----------+----------+----------+----------+-----------+
+  | Face Val | Graded   | Key Dates| Duplicates            |
+  |  $847    |   312    |    78    |    145                 |
+  +----------+----------+----------+-----------------------+
+
+  CARD DEFINITIONS:
+  - Holding:    Coins with InCollection = Y (coins you own)
+  - Missing:    Coins with InCollection = N (coins you need)
+  - Minted:     Total coins in the database (Holding + Missing)
+  - Hold %:     Percentage of coins you own (Holding / Minted)
+  - Book Value: Total book value of all coins (sum)
+  - Face Value: Total face value of all coins (sum)
+  - Graded:     Number of coins that have a grade assigned
+  - Key Dates:  Number of coins marked as KeyDate/SemiKey/BetterDate
+  - Duplicates: Total duplicate count across all coins
+
+  HOW TO USE THE CARDS:
+
+  LEFT-CLICK a card to filter the grid:
+  - Holding  -> Shows only coins with InCollection = Y
+  - Missing  -> Shows only coins with InCollection = N
+  - Minted   -> Clears filter, shows all coins
+  - Hold %   -> Clears filter, shows all coins
+  - Book Val -> Sorts all coins by Book Value (highest first)
+  - Face Val -> Sorts all coins by Face Value (highest first)
+  - Graded   -> Shows only coins that have a grade assigned
+  - Key Dates-> Shows only coins marked as key dates
+  - Duplicates-> Shows only coins with duplicate count > 0
+
+  RIGHT-CLICK a card to export a printable text report:
+  - A detailed text file is generated in the "Reports" folder
+  - The file opens automatically in Notepad for printing
+  - Reports include coin-by-coin breakdowns sorted by year
+  - Value reports include denomination breakdowns with totals
+
+  TIP: The "Hold %" and "Book Value" right-click reports are
+  especially useful. The Hold % report breaks down your completion
+  percentage by denomination type. The Book Value report shows your
+  collection value organized by coin type.
+
+================================================================================
+5.  TOOLBAR BUTTONS
+================================================================================
+
+  The toolbar appears below the stat cards with these buttons:
+
+  [+ New Coin]  Green button. Clears the left-side form so you can
+                enter a brand new coin. Same as pressing Ctrl+N.
+
+  [Delete]      Red button. Deletes the currently selected coin
+                from the grid. You will be asked to confirm. After
+                deleting, an "Undo Delete" button appears in the
+                status bar in case you change your mind.
+
+  [Statistics]  Orange button. Opens a popup window with a full
+                statistical breakdown of your collection including:
+                - Total coins, in/not in collection
+                - Total face, book, purchase, and current values
+                - Gain/loss calculation
+                - Earliest and latest years
+                - Breakdowns by denomination, mint, country, metal,
+                  grade, key dates, and certification company
+
+  [Export Report] Purple button. Generates a comprehensive text
+                  report of your entire collection with all coin
+                  details in a formatted table. Saves to the app
+                  folder and offers to open in Notepad.
+
+  [Refresh]     Dark gray button. Reloads data from the CSV file
+                and refreshes the grid. Same as pressing F5.
+
+  [Backup]      Yellow button. Creates a timestamped backup of all
+                your collections in the "Backups" folder. The app
+                keeps the 10 most recent backups automatically.
+
+  [Import CSV]  Teal button. Replaces the current collection with
+                data from an external CSV file. A backup is created
+                first automatically.
+
+  [Import Excel] Blue button. Imports coins from a US Coin
+                 Collection Excel workbook (.xlsm or .xlsx). See
+                 Section 12 for full details.
+
+  [Clone Coin]  Dark green button. Copies all data from the
+                selected coin into the form as a new coin. Useful
+                for adding similar coins quickly - just change the
+                year or mint mark and save.
+
+  [Export CSV]   Green button. Saves your collection as a standard
+                 CSV file to any location you choose.
+
+  [Restore Backup] Purple button. Opens a dialog showing all
+                    available backups. Select one to restore your
+                    data to that point in time. Your current data
+                    is backed up first.
+
+  [Research]    Blue button. Opens a menu of online coin reference
+                sites (PCGS, NGC, Heritage Auctions, etc.) with
+                URLs built from the selected coin's data.
+
+  [Melt Value]  Dark red button. Calculates the precious metal
+                melt value of your entire collection using known
+                coin compositions and current spot prices.
+
+  [Charts]      Pink button. Generates a visual analytics report
+                with 7 interactive charts that opens in your
+                web browser.
+
+  [Print Labels] Brown button. Generates printable 2x2 coin flip
+                 labels for all coins or just the selected coin.
+                 Opens in your browser for printing.
+
+  [Insurance]   Dark green button. Generates a professional
+                insurance/appraisal report with all coin details,
+                values, and signature lines.
+
+  [Set Tracker] Dark pink button. Shows completion progress for
+                20 popular US coin series with visual progress
+                bars and missing coin lists.
+
+  [Value History] Dark purple button. Shows how your collection
+                  value has changed over time with interactive
+                  charts. Snapshots recorded automatically.
+
+================================================================================
+6.  SEARCH & FILTER BAR
+================================================================================
+
+  Below the toolbar is a search bar with these filter fields:
+
+  - Year:         Exact match (e.g. "1921")
+  - Mint:         Partial match (e.g. "S" finds all S-mint coins)
+  - Denomination: Partial match (e.g. "Cent" finds all cents)
+  - Grade:        Partial match (e.g. "Fine" finds Fine, Very Fine)
+  - Metal:        Partial match (e.g. "Silver" finds all silver)
+  - Key:          Partial match (e.g. "Key" finds KeyDate coins)
+
+  [Search] button: Applies all filters at once
+  [Clear] button:  Clears all filters and shows all coins
+
+  LIVE SEARCH: As you type in any filter field, results update
+  automatically after a brief delay (400ms). You don't need to
+  click Search - just start typing.
+
+  ENTER KEY: Press Enter in any filter field to trigger search
+  immediately.
+
+  TIP: Filters combine with AND logic. Typing "1921" in Year and
+  "Morgan" in Denomination shows only 1921 Morgan Dollars.
+
+================================================================================
+7.  COIN DATA GRID
+================================================================================
+
+  The main grid displays your coins in a sortable, scrollable table.
+
+  VISIBLE COLUMNS:
+  (thumbnail) | ID | Year | Mint | Denomination | Type | Variety |
+  Grade | Face$ | Book$ | Key | Metal | Dup# | Location | Comments
+
+  THUMBNAIL COLUMN: The first column shows a small coin image if
+  the coin has a personal image assigned (via the form's Image field).
+
+  SORTING: Click any column header to sort by that column. Click
+  again to reverse the sort order.
+
+  SELECTING A COIN: Click any row to select it. The selected coin's
+  data automatically fills into the left-side form panel for editing.
+
+  ROW DETAILS: Double-click a row to expand/collapse additional
+  details including: Error info, Date Range Minted, Weight,
+  InCollection status, Country, Purchase Price, Current Value,
+  Duplicate info, Certification details, Notes, and Date Added.
+
+  Double-click again to collapse the details.
+
+  The status bar shows the total count and selection info:
+  "1486 coins | 1 selected"
+
+================================================================================
+8.  LEFT-SIDE COIN FORM (Add / Edit)
+================================================================================
+
+  The left panel (335px wide) is always visible and serves as both
+  the Add New Coin form and the Edit Coin form.
+
+  FORM HEADER:
+  - Shows "Add New Coin" when in add mode
+  - Shows "Edit Coin [ID: 123]" when editing an existing coin
+  - Shows "Add New Coin (Clone)" when cloning
+
+  FORM SECTIONS:
+
+  --- Coin Information ---
+  Year *          4-digit year (required, 1700-2099)
+  Mint Mark       Dropdown: (blank), P, D, S, W, CC, O, C, Plain
+                  You can also type a custom value
+  Denomination *  Dropdown with 50+ US coin types (required)
+                  You can also type a custom denomination
+  Type            Free text (e.g. "Type 1", "Type 2")
+  Variety         Free text (e.g. "DDO", "RPM", "Overdate")
+  Country         Dropdown: USA, Canada, Mexico, UK, Australia, Other
+  Series          Free text (e.g. "State Quarters", "ATB")
+  Error           Free text (e.g. "Double Die", "Off Center")
+
+  --- Grading & Value ---
+  Grade           Dropdown with common grades: Poor through Proof
+                  Includes both descriptive and numeric grades
+                  (e.g. "Very Good" or "Very Good (VG-8)")
+  Face Value $    The coin's face value in dollars
+  Book Value $    The coin's catalog/book value
+  Purchase $      What you paid for the coin
+  Current Val $   The coin's current market value
+  Key Dates       Dropdown: (blank), KeyDate, SemiKey, BetterDate
+
+  --- Physical Properties ---
+  Metal           Dropdown: copper, nickel, silver, gold, etc.
+  Weight          Free text for coin weight
+
+  --- Collection Status ---
+  In Collection   Y or N (is this coin in your collection?)
+  Location        Where the coin is stored
+  Date Added      Auto-filled, read-only
+  Date Range      When this coin type was minted
+  Data Std        Dropdown: OK, Missing Data, Record Disabled
+
+  --- Duplicates ---
+  Dup Count       How many duplicates you own
+  Dup Face $      Total face value of duplicates
+  Dup Grade $     Total graded value of duplicates
+  Dup Location    Where duplicates are stored
+
+  --- Slab / Certification ---
+  Cert Company    Dropdown: PCGS, NGC, ANACS, ICG, Other
+  Cert Number     The slab certification number
+                  [Verify] button opens PCGS/NGC lookup website
+  Slab Grade      The grade on the slab label
+  Mintage         Total number minted (whole number)
+  Rarity (1-10)   Dropdown scale from 1 to 10
+
+  --- Notes ---
+  Comments        Short comment about the coin
+  Notes           Additional notes
+
+  --- Coin Image ---
+  Image           Path to a personal photo of your coin
+  [...] button    Browse for an image file
+  Preview         Shows a thumbnail of the coin image
+                  (falls back to the coin type reference image
+                   if no personal photo is assigned)
+
+  BOTTOM BUTTONS:
+  [Clear / New]   Clears all fields and switches to Add mode
+  [Save Coin]     Saves the coin (adds new or updates existing)
+
+  HOW ADDING WORKS:
+  1. Click [+ New Coin] or [Clear / New] to clear the form
+  2. Fill in the fields (Year and Denomination are required)
+  3. Click [Save Coin]
+  4. If a duplicate is detected (same Year + Mint + Denomination),
+     you'll be asked to confirm
+  5. The coin is saved and the form auto-clears for the next entry
+
+  HOW EDITING WORKS:
+  1. Click a coin in the grid - the form auto-populates
+  2. The header changes to "Edit Coin [ID: 123]"
+  3. Make your changes
+  4. Click [Save Coin] to update that coin
+  5. The form stays in edit mode showing the updated coin
+
+  VALIDATION:
+  - Year must be exactly 4 digits (1700-2099)
+  - Denomination is required
+  - Dollar values must be valid numbers
+  - Mintage and Dup Count must be whole numbers
+  - Errors appear in red text below the form fields
+
+================================================================================
+9.  COIN IMAGES
+================================================================================
+
+  The application supports coin images in two ways:
+
+  1. COIN TYPE REFERENCE IMAGES (automatic)
+     When you import from the Excel workbook, 27 coin type images
+     are automatically extracted from the workbook and saved to the
+     "CoinImages" folder. These are reference photos for each coin
+     type (e.g. Lincoln Cent, Morgan Dollar, etc.)
+
+     When you select a coin in the grid, the form shows the
+     appropriate type image automatically if no personal photo
+     is assigned.
+
+  2. PERSONAL COIN PHOTOS (per coin)
+     You can assign a personal photo to any individual coin:
+     - Click the [...] button next to "Image" in the form
+     - Browse to select a JPG, PNG, BMP, or GIF file
+     - The image appears in the preview area
+     - OR drag and drop an image file onto the preview area
+
+     Personal photos are stored in the "Images" folder and
+     linked to the coin by ID.
+
+  IMAGE PREVIEW:
+  - The small preview image in the form shows the coin image
+  - CLICK the preview image to open a full-size image viewer
+  - RIGHT-CLICK the preview to clear the image assignment
+  - DRAG & DROP an image file onto the preview to set it
+
+  VIEW IMAGE FROM GRID:
+  - Right-click a coin in the grid and choose "View Image"
+  - This opens the full-size viewer for that coin
+  - If no personal photo, shows the coin type reference image
+
+  FULL-SIZE IMAGE VIEWER:
+  - Opens in a resizable popup window
+  - Dark background for clear viewing
+  - The image scales to fit the window
+  - Resize the window to see the image larger
+  - Close the window to return to the main application
+
+================================================================================
+10. REPORTS & PRINTING
+================================================================================
+
+  There are two ways to generate printable reports:
+
+  METHOD 1: STAT CARD REPORTS (right-click)
+  Right-click any of the 9 dashboard stat cards to generate a
+  focused report for that category:
+
+  - Holding:    Lists all coins you own, sorted by year
+  - Missing:    Lists all coins you don't own
+  - Minted:     Lists all coins in the database
+  - Hold %:     Shows completion percentage by denomination
+  - Book Value: Shows value breakdown by denomination
+  - Face Value: Shows face value breakdown by denomination
+  - Graded:     Lists all graded coins
+  - Key Dates:  Lists all key date coins
+  - Duplicates: Lists all coins with duplicates
+
+  Reports are saved in the "Reports" folder with timestamped
+  filenames and automatically open in Notepad for printing.
+
+  METHOD 2: FULL EXPORT REPORT (toolbar)
+  Click [Export Report] in the toolbar to generate a comprehensive
+  report with every coin listed in a formatted table showing:
+  ID, Year, Mint, Denomination, Type, Variety, Grade, Face$,
+  Book$, Value$, Key, Metal, Cert, and Slab information.
+
+  The report includes totals for Face Value, Book Value,
+  Purchase Price, Current Value, and Gain/Loss.
+
+  TO PRINT: When the text file opens in Notepad, use
+  File > Print or press Ctrl+P.
+
+================================================================================
+11. BACKUP & RESTORE
+================================================================================
+
+  AUTOMATIC BACKUPS:
+  The application creates an automatic backup every time it starts.
+  Backups are stored in the "Backups" folder.
+
+  MANUAL BACKUP:
+  Click [Backup] in the toolbar to create an immediate backup.
+  A confirmation message shows the backup location.
+
+  BACKUP MANAGEMENT:
+  - Backups are timestamped folders (e.g. Collections_20260225_143022)
+  - The application keeps the 10 most recent backups
+  - Older backups are automatically deleted
+
+  RESTORE:
+  1. Click [Restore Backup] in the toolbar
+  2. A list of available backups appears (most recent first)
+  3. Select the backup you want to restore
+  4. Click [Restore]
+  5. Confirm the restore operation
+  6. Your current data is backed up first (safety net)
+  7. The selected backup data replaces your current collections
+
+  WARNING: Restoring replaces ALL your current collection data.
+  Your current data IS backed up first, so you can always restore
+  again to get back to where you were.
+
+================================================================================
+12. IMPORT FROM EXCEL
+================================================================================
+
+  The application can import data directly from the "US Coin
+  Collection" Excel workbook (.xlsm file).
+
+  HOW TO IMPORT:
+  1. Click [Import Excel] in the toolbar
+  2. Browse to select your Excel file (.xlsm or .xlsx)
+  3. Choose import mode:
+     - [Yes] = Import only coins with InCollection = Y
+     - [No]  = Import ALL coins (both Y and N)
+     - [Cancel] = Abort the import
+  4. Wait for the import to complete (may take 30-60 seconds
+     for large workbooks with thousands of coins)
+  5. A confirmation message shows how many coins were imported
+
+  WHAT GETS IMPORTED:
+  - All 23 data columns from the Database sheet
+  - Coin type images from the workbook's embedded images
+  - Data is automatically cleaned and validated
+
+  IMPORTANT NOTES:
+  - Microsoft Excel must be installed on your computer
+  - The import replaces the current collection (backup created first)
+  - The workbook must have a sheet named "Database"
+  - Column mapping follows the standard US Coin Collection format
+  - Images are extracted and saved to the "CoinImages" folder
+
+  SUPPORTED FIELDS FROM EXCEL:
+  InCollection, Coin Name (mapped to Denomination), Type, Year,
+  Mint Mark, Error, Variety, Grade, Book Value, Key Dates,
+  Face Value, Dup Count, Dup Face Value, Metal, Dup Graded Value,
+  Location, Dup Location, Comments, Notes, Date Range Minted,
+  Data Standard, Weight, ID
+
+================================================================================
+13. IMPORT / EXPORT CSV
+================================================================================
+
+  IMPORT CSV:
+  Click [Import CSV] to replace the current collection with data
+  from an external CSV file. The CSV should have the same column
+  headers as the application's format. A backup is created first.
+
+  EXPORT CSV:
+  Click [Export CSV] to save the current collection as a standard
+  CSV file. You can choose the filename and location. The CSV file
+  can be opened in Excel, Google Sheets, or any spreadsheet app.
+
+  CSV FIELDS (34 columns):
+  ID, Year, Mint, Denomination, Type, Variety, Country, Grade,
+  FaceValue, BookValue, PurchasePrice, CurrentValue, KeyDates,
+  Error, Metal, Weight, DupCount, DupFaceValue, DupGradedValue,
+  Location, DupLoc, Comments, Notes, DateRangeMinted, DataStandard,
+  InCollection, DateAdded, CertCompany, CertNumber, SlabGrade,
+  Mintage, RarityScore, ImagePath, Series
+
+================================================================================
+14. KEYBOARD SHORTCUTS
+================================================================================
+
+  Ctrl+N      New Coin (clears form for adding)
+  Ctrl+S      Save Coin (same as clicking Save button)
+  Ctrl+Z      Undo last delete (if available)
+  Escape      Clear form / switch to Add mode
+  F5          Refresh grid from data file
+  Enter       (in search fields) Trigger search immediately
+
+================================================================================
+15. CONTEXT MENU (Right-Click on Grid)
+================================================================================
+
+  Right-click any coin in the data grid to see these options:
+
+  Edit         Load the coin into the form for editing
+  Clone        Copy the coin data into the form as a new coin
+  Delete       Delete the coin (with confirmation)
+  ----
+  View Image   Open the full-size coin image viewer
+  ----
+  Copy Row     Copy the coin's key data to the clipboard
+               (ID, Year, Mint, Denomination, Type, Grade,
+                Book Value, Location - tab-separated)
+
+================================================================================
+16. CERTIFICATION VERIFICATION
+================================================================================
+
+  If your coin is slabbed (professionally graded), you can verify
+  the certification online:
+
+  1. Select the Cert Company (PCGS or NGC) in the form
+  2. Enter the certification number
+  3. Click [Verify]
+  4. Your web browser opens to the grading company's lookup page
+
+  Supported services:
+  - PCGS: Opens https://www.pcgs.com/cert/[number]
+  - NGC:  Opens https://www.ngccoin.com/certlookup/[number]
+
+  Note: Online verification requires an internet connection and
+  is only available for PCGS and NGC certifications.
+
+================================================================================
+17. ONLINE RESEARCH LINKS
+================================================================================
+
+  Click the [Research] button in the toolbar to open a menu of
+  online coin reference sites. If a coin is selected in the grid,
+  search URLs are automatically built using that coin's data.
+
+  AVAILABLE SITES:
+
+  Price Guides & Reference:
+  - PCGS CoinFacts       Encyclopedia of US coins with values/photos
+  - PCGS Price Guide     Current dealer asking prices by grade
+  - PCGS Photograde      Reference photos for grading comparison
+  - PCGS Auction Prices  Millions of past auction results
+  - PCGS Population      How many coins certified per grade
+  - NGC Coin Explorer    Comprehensive US coin reference
+  - NGC Price Guide      Retail prices for NGC-certified coins
+
+  Auctions & Dealers:
+  - Heritage Auctions    Largest coin auction house, 4M+ records
+  - USA CoinBook         Free price guide and melt values
+  - CoinTrackers         Quick 3-step coin valuations
+  - Greysheet            Wholesale (dealer-to-dealer) pricing
+
+  Melt Values:
+  - USA CoinBook Melt    Silver/gold melt value calculators
+  - MeltValue.com        Spot price calculators
+
+  Reference & Education:
+  - CONECA               Error and variety coin reference
+  - Numista              World coin database and catalog
+  - ANA                  American Numismatic Association
+
+  Certification Lookup:
+  - If the selected coin has a PCGS or NGC cert number, an extra
+    menu item appears to verify that specific certification online
+
+  TIP: Even without a coin selected, the links still work — they
+  just open the site's main page instead of a specific search.
+
+================================================================================
+18. MELT VALUE CALCULATOR
+================================================================================
+
+  Click the [Melt Value] button to calculate the precious metal
+  melt value of your entire collection.
+
+  HOW IT WORKS:
+  1. The calculator uses known metal compositions for every US
+     coin type (silver content in troy ounces, gold content, etc.)
+  2. It attempts to fetch live spot prices from the internet
+  3. If spot prices can't be fetched, it uses recent defaults
+  4. A detailed report opens in Notepad showing:
+     - Current spot prices used (silver, gold, copper per oz/lb)
+     - Total metal content in your collection
+     - Total melt value breakdown (silver + gold + copper)
+     - Per-denomination breakdown sorted by value
+
+  COIN TYPES WITH SIGNIFICANT MELT VALUE:
+  - 90% Silver: Dimes, Quarters, Half Dollars, Dollars (pre-1965)
+  - 40% Silver: Kennedy Half Dollars (1965-1970)
+  - Gold: All gold coin denominations ($1, $2.50, $3, $5, $10, $20)
+  - Bullion: American Silver Eagles (1 troy oz silver)
+
+  IMPORTANT NOTES:
+  - Melt value is the metal content value, NOT the collector value
+  - Collector value (book value) is usually higher than melt value
+  - Post-1964 clad coins have negligible melt value
+  - The report saves to the Reports folder for your records
+
+================================================================================
+19. CHARTS & ANALYTICS
+================================================================================
+
+  Click the [Charts] button to generate a visual analytics report
+  that opens in your web browser.
+
+  The report includes 7 interactive charts:
+
+  1. COINS BY DENOMINATION (Top 15)
+     Horizontal bar chart showing which coin types you have most of
+
+  2. BOOK VALUE BY DENOMINATION
+     Horizontal bar chart showing where your collection value is
+
+  3. GRADE DISTRIBUTION
+     Bar chart showing how your coins are graded
+
+  4. COINS BY MINT MARK
+     Doughnut chart showing mint mark distribution (P, D, S, etc.)
+
+  5. COINS BY DECADE
+     Bar chart showing the age distribution of your collection
+
+  6. COINS BY METAL
+     Doughnut chart showing metal composition breakdown
+
+  7. COLLECTION STATUS
+     Doughnut chart showing Holding vs Missing coins
+
+  The report also shows summary stat cards at the top with your
+  key collection numbers.
+
+  REQUIREMENTS:
+  - Internet connection (loads Chart.js library from CDN)
+  - Modern web browser (Chrome, Edge, Firefox)
+  - Reports save to the Reports folder as HTML files
+  - You can print charts from your browser (Ctrl+P)
+
+================================================================================
+20. 2x2 FLIP LABEL PRINTING
+================================================================================
+
+  Click the [Print Labels] button to generate printable labels
+  sized for standard 2x2 coin holders (1.85" x 1.85").
+
+  LABEL OPTIONS:
+  When you click the button, you choose:
+  - [Yes] = Generate labels for ALL coins in the collection
+  - [No]  = Generate a label for only the selected coin
+  - [Cancel] = Abort
+
+  WHAT'S ON EACH LABEL:
+  - Denomination (bold, teal color)
+  - Year and Mint Mark (large, bold)
+  - Type (if assigned)
+  - Grade (if assigned)
+  - Face Value and Book Value
+  - Metal composition
+  - Certification info (company, number, slab grade)
+  - Key Date indicator (in red if applicable)
+
+  HOW TO PRINT:
+  1. The labels open in your web browser
+  2. Press Ctrl+P to open the print dialog
+  3. Set scale to 100% (do NOT use "fit to page")
+  4. Print on standard letter paper (8.5" x 11")
+  5. Cut along the dashed lines
+  6. Insert into your 2x2 coin holders
+
+  TIPS:
+  - Labels are sorted by year then mint mark
+  - Print on cardstock for more durable labels
+  - The header and instructions auto-hide when printing
+  - Labels save to the Reports folder as HTML files
+
+================================================================================
+21. VARIETY & ERROR COIN TRACKING
+================================================================================
+
+  The form now includes a dedicated "Varieties & Errors" section
+  for serious collectors who track die varieties and error coins.
+
+  NEW FIELDS:
+  - VAM #:       Van Allen/Mallis variety number (primarily for
+                 Morgan and Peace dollars, e.g. "VAM-1A")
+  - FS #:        Fivaz-Stanton number from the Cherrypicker's
+                 Guide to Rare Die Varieties (e.g. "FS-101")
+  - Error Type:  Dropdown with common error types:
+                 DDO, DDR, RPM, Off-Center, Broadstrike, Clipped
+                 Planchet, Die Crack, Die Break, Cud, Wrong
+                 Planchet, Double Struck, Brockage, Lamination,
+                 Missing Edge Lettering (or type your own)
+  - Variety:     Dropdown with common variety designations:
+                 Overdate, Over Mint Mark, Large/Small Date,
+                 Large/Small Letters, Proof, Deep Cameo,
+                 Full Bands (FB), Full Bell Lines (FBL),
+                 Full Steps (FS), Full Head (FH), Full Torch,
+                 CAC Verified (or type your own)
+
+  These fields are saved per-coin and exported in CSV/reports.
+
+================================================================================
+22. INSURANCE / APPRAISAL REPORT
+================================================================================
+
+  Click the [Insurance] button to generate a professional
+  insurance/appraisal report in HTML format.
+
+  THE REPORT INCLUDES:
+  - Official-looking header with collection name and date
+  - Summary box with total book value, market value, purchase
+    cost, and recommended insurance coverage amount
+  - Detailed inventory table sorted by value (highest first)
+  - Each coin shows year, mint, denomination, type, grade,
+    certification, face value, book value, current value,
+    key date status, and comments
+  - Certified coins show colored badges (PCGS, NGC, etc.)
+  - Key dates are highlighted in red
+  - Signature lines for owner and appraiser
+
+  HOW TO USE:
+  1. Click [Insurance] in the toolbar
+  2. The report opens in your browser
+  3. Press Ctrl+P to print for your insurance company
+  4. Reports save to the Reports folder
+
+  TIP: Insurance companies typically want the higher of book value
+  or current market value. The report calculates this automatically
+  as the "Recommended Insurance Coverage" amount.
+
+================================================================================
+23. SET COMPLETION TRACKING
+================================================================================
+
+  Click the [Set Tracker] button to see your progress on 20
+  popular US coin series.
+
+  TRACKED SERIES:
+  - Lincoln Cent (1909-2024)
+  - Indian Head Cent (1859-1909)
+  - Jefferson Nickel (1938-2024)
+  - Buffalo Nickel (1913-1938)
+  - Roosevelt Dime (1946-2024)
+  - Mercury Dime (1916-1945)
+  - Washington Quarter (1932-2024)
+  - Standing Liberty Quarter (1916-1930)
+  - Kennedy Half Dollar (1964-2024)
+  - Franklin Half Dollar (1948-1963)
+  - Walking Liberty Half Dollar (1916-1947)
+  - Morgan Dollar (1878-1921)
+  - Peace Dollar (1921-1935)
+  - Eisenhower Dollar (1971-1978)
+  - Barber Dime, Quarter, and Half Dollar
+  - Seated Liberty Dime, Quarter, and Half Dollar
+
+  FOR EACH SERIES YOU SEE:
+  - Visual progress bar (color-coded by completion %)
+  - How many you have vs. total in the set
+  - How many are missing
+  - Total book value of coins you hold in that set
+  - Expandable list of specific missing year/mint coins
+
+  PROGRESS BAR COLORS:
+  - Green:  80%+ complete
+  - Orange: 50-79% complete
+  - Yellow: 20-49% complete
+  - Red:    Under 20% complete
+
+================================================================================
+24. PCGS CERTIFICATION LOOKUP
+================================================================================
+
+  The [Verify] button next to the Cert Number field has been
+  enhanced with PCGS lookup integration.
+
+  HOW IT WORKS:
+  1. Select "PCGS" as the Cert Company
+  2. Enter the certification number
+  3. Click [Verify]
+  4. The app attempts to look up the cert on PCGS.com
+  5. If found, a popup shows the coin details:
+     - Denomination, Year, Grade, Variety
+  6. Click Yes to open the full PCGS page in your browser
+
+  For NGC certs, clicking Verify opens the NGC lookup page
+  directly in your browser.
+
+  NOTE: Requires internet connection. PCGS lookup scrapes the
+  public cert page - no API key required.
+
+================================================================================
+25. VALUE HISTORY TRACKING
+================================================================================
+
+  Click the [Value History] button to see how your collection
+  value has changed over time.
+
+  HOW IT WORKS:
+  - Every time you launch the app, a value snapshot is recorded
+  - Each snapshot saves: date, total coins, holding count,
+    book value, current value, and face value
+  - Snapshots are stored in ValueHistory.csv in the app folder
+  - Click the button to generate an interactive chart report
+
+  THE REPORT SHOWS:
+  1. STAT CARDS: Current book value, market value, change since
+     first snapshot, coins held, and total snapshots
+  2. VALUE OVER TIME CHART: Line graph tracking book value,
+     current value, and face value across all snapshots
+  3. COLLECTION SIZE CHART: Line graph showing total coins and
+     holding count over time
+  4. HISTORY LOG TABLE: Every snapshot in reverse chronological
+     order with all values
+
+  TIP: The more you use the app, the more data points you'll
+  have. Over months and years, you'll see clear trends in your
+  collection's growth and appreciation.
+
+================================================================================
+26. FILE LOCATIONS & DATA STORAGE
+================================================================================
+
+  All application files are stored relative to the script location.
+  If the script is at C:\code\coin\CoinCollection.ps1, then:
+
+  Collections\           Folder containing your collection CSV files
+    MyCoins.csv          Default collection data file
+    [other].csv          Additional collections you create
+
+  Backups\               Folder containing backup snapshots
+    Collections_[date]\  Timestamped backup folders
+
+  CoinImages\            Coin type reference images (27 PNG files)
+                         Extracted from Excel workbook on import
+
+  Images\                Personal coin photos you assign to coins
+
+  Reports\               Stat card export text files
+
+  CoinReport_[date].txt  Full export reports (in app root)
+
+  ValueHistory.csv       Value snapshots recorded over time
+                         (date, coin count, book/current/face values)
+
+  DATA FORMAT:
+  - All data is stored in standard CSV format (UTF-8 encoded)
+  - CSV files can be opened in any spreadsheet application
+  - Data is automatically validated and repaired on load
+  - Missing values are filled with safe defaults (0 for numbers,
+    "Y" for InCollection, today's date for DateAdded)
+
+================================================================================
+27. PERFORMANCE & SPEED
+================================================================================
+
+  Version 4.1.0 includes several optimizations that significantly reduce
+  startup time. Here's what happens behind the scenes:
+
+  CACHED C# COMPILATION
+  - The image converter is compiled to a DLL (ImagePathConverter.dll) on first
+    run. Subsequent launches skip compilation entirely and load the DLL directly,
+    saving several seconds.
+  - If you ever need to force a recompile, simply delete ImagePathConverter.dll
+    from the application folder and restart.
+
+  SMART BACKUP
+  - On startup, the app checks if a backup from today already exists. If so,
+    it skips the backup copy, saving time on each launch.
+  - Manual backups (toolbar button) always create a fresh backup regardless.
+  - Backups before imports/restores always create a fresh safety backup.
+
+  OPTIMIZED DATA LOADING
+  - The CSV collection is read only once at startup instead of twice.
+  - The data repair function uses fast HashSet lookups instead of slow
+    array scans, dramatically improving load time for large collections.
+  - Internal arrays use pre-allocated List<T> instead of PowerShell's slow
+    array += pattern.
+
+  INSTANT WINDOW DISPLAY
+  - The application window appears immediately while data loads in the
+    background. You'll see "Loading collection..." briefly in the status bar,
+    then your coins appear as soon as they're ready.
+
+  TIPS FOR LARGE COLLECTIONS (5,000+ coins)
+  - The app handles large collections well, but if you notice slowness:
+    * Keep backup count reasonable (max 10 are kept automatically)
+    * Periodically clean the ValueHistory.csv if it grows very large
+    * Close other Excel instances before importing from Excel
+
+================================================================================
+28. TROUBLESHOOTING
+================================================================================
+
+  PROBLEM: Application won't start
+  SOLUTION:
+  - Make sure you're running PowerShell 5.1 or later
+  - Check: $PSVersionTable.PSVersion
+  - Right-click the .ps1 file and choose "Run with PowerShell"
+  - If you get an execution policy error, run:
+    Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
+
+  PROBLEM: Excel import fails
+  SOLUTION:
+  - Make sure Microsoft Excel is installed
+  - Close any open Excel workbooks first
+  - The workbook must have a "Database" sheet
+  - Try running as Administrator if COM errors occur
+
+  PROBLEM: Images not showing
+  SOLUTION:
+  - Run an Excel import first to extract coin type images
+  - Check that CoinImages folder exists and has PNG files
+  - For personal photos, make sure the image path is valid
+  - Supported formats: JPG, JPEG, PNG, BMP, GIF
+
+  PROBLEM: Data looks wrong or corrupted
+  SOLUTION:
+  - The app auto-repairs data on every load
+  - Click [Refresh] to reload from file
+  - Use [Restore Backup] to go back to a previous version
+  - Check the Backups folder for available restore points
+
+  PROBLEM: Search returns no results
+  SOLUTION:
+  - Click [Clear] to reset all filters first
+  - Search is case-insensitive for most fields
+  - Year filter requires exact match (e.g. "1921" not "192")
+  - Other filters use partial matching (e.g. "Cent" matches
+    "Lincoln Cent", "Indian Head Cent", etc.)
+
+  PROBLEM: Can't delete a collection
+  SOLUTION:
+  - You cannot delete the last remaining collection
+  - Create a new collection first, then delete the old one
+
+  PROBLEM: Stat card report won't open
+  SOLUTION:
+  - Make sure Notepad is available on your system
+  - Check the Reports folder for the generated text file
+  - You can open the file manually from the Reports folder
+
+================================================================================
+  END OF USER MANUAL
+
+  US Coin Collection Dashboard v4.0.0
+  (c) 2026 US Coin Inventory System
+================================================================================
