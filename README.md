@@ -4,6 +4,11 @@ A free **coin collection tracker** for Windows: a full mouse-driven WPF dashboar
 
 > Built by a working IT technician for a family coin collection. Free to use, free to change.
 
+## Screenshots
+
+![Dashboard with a fictional sample collection (see samples/)](docs/screenshots/main.png)
+*Dashboard with a fictional sample collection (see samples/)*
+
 ## Features
 
 - **Dashboard** of stat cards and a sortable, filterable coin grid; multiple collections with a switcher
@@ -31,6 +36,8 @@ git clone https://github.com/ronaldgoodchild/coin-collection-manager.git
 cd coin-collection-manager
 powershell -ExecutionPolicy Bypass -File .\CoinCollection.ps1
 ```
+
+Want to look around first? Copy `samples\SampleCollection.csv` to `Collections\MyCoins.csv` (fictional coins and values).
 
 On first launch it creates `Collections\MyCoins.csv` and compiles a small image helper (`ImagePathConverter.dll`) next to the script.
 

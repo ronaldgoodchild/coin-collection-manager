@@ -3,8 +3,8 @@
 Comment on (or open) an issue first so we don't duplicate work.
 
 ## Good first issues
-- [ ] Add screenshots (with sample coins) to the README
-- [ ] Ship a small sample collection (`Collections/Sample.csv`) so new users can explore
+- [x] Add screenshots (with sample coins) to the README
+- [x] Ship a small sample collection (`samples/SampleCollection.csv`) so new users can explore
 - [ ] Convert the plain-text manual to Markdown
 - [ ] Add a `-DataPath` parameter so the collection can live outside the script folder
 

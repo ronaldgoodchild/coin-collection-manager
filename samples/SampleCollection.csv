@@ -1,0 +1,25 @@
+﻿ID,Year,Mint,Denomination,Type,Variety,Country,Grade,FaceValue,BookValue,PurchasePrice,CurrentValue,KeyDates,Error,Metal,Weight,DupCount,DupFaceValue,DupGradedValue,Location,DupLoc,Comments,Notes,DateRangeMinted,DataStandard,InCollection,DateAdded,CertCompany,CertNumber,SlabGrade,Mintage,RarityScore,ImagePath,Series
+1,1909,S,Cent,Lincoln Wheat,VDB,United States,VF-20,0.01,800,650,720,Y,,Copper,3.11,0,0,0,Safe,,,,,,Y,2026-01-15,PCGS,12345671,VF20,484000,,,Lincoln Cents
+2,1914,D,Cent,Lincoln Wheat,,United States,F-12,0.01,300,210,260,Y,,Copper,3.11,0,0,0,Safe,,,,,,Y,2026-01-15,,,,1193000,,,Lincoln Cents
+3,1943,P,Cent,Lincoln Wheat,Steel,United States,MS-64,0.01,3,1,3,,,Steel,2.70,0,0,0,Safe,,,,,,Y,2026-01-15,,,,684628670,,,Lincoln Cents
+4,1955,P,Cent,Lincoln Wheat,Doubled Die,United States,XF-40,0.01,1500,900,1400,Y,,Copper,3.11,0,0,0,Safe,,,,,,Y,2026-01-15,NGC,4567890-001,XF40,330958000,,,Lincoln Cents
+5,1938,D,Nickel,Buffalo,,United States,VG-8,0.05,2,1,2,,,Nickel,5.00,0,0,0,Safe,,,,,,Y,2026-01-15,,,,7020000,,,Buffalo Nickels
+6,1926,S,Nickel,Buffalo,,United States,F-12,0.05,90,55,80,Y,,Nickel,5.00,0,0,0,Safe,,,,,,Y,2026-01-15,,,,970000,,,Buffalo Nickels
+7,1916,D,Dime,Mercury,,United States,G-4,0.10,1200,800,1000,Y,,Silver,2.50,0,0,0,Safe,,,,,,Y,2026-01-15,PCGS,23456782,G4,264000,,,Mercury Dimes
+8,1942,P,Dime,Mercury,,United States,MS-63,0.10,12,8,12,,,Silver,2.50,0,0,0,Safe,,,,,,Y,2026-01-15,,,,205410000,,,Mercury Dimes
+9,1932,D,Quarter,Washington,,United States,VG-8,0.25,90,60,85,Y,,Silver,6.25,0,0,0,Safe,,,,,,Y,2026-01-15,,,,436800,,,Washington Quarters
+10,1964,D,Quarter,Washington,,United States,MS-65,0.25,20,12,18,,,Silver,6.25,0,0,0,Safe,,,,,,Y,2026-01-15,NGC,5678901-004,MS65,704135000,,,Washington Quarters
+11,1921,P,Half Dollar,Walking Liberty,,United States,F-12,0.50,75,45,70,,,Silver,12.50,0,0,0,Safe,,,,,,Y,2026-01-15,,,,246000,,,Walking Liberty Halves
+12,1964,P,Half Dollar,Kennedy,,United States,MS-64,0.50,22,15,22,,,Silver,12.50,0,0,0,Safe,,,,,,Y,2026-01-15,,,,273304004,,,Kennedy Halves
+13,1881,S,Dollar,Morgan,,United States,MS-63,1.00,60,38,58,,,Silver,26.73,0,0,0,Safe,,,,,,Y,2026-01-15,PCGS,34567893,MS63,12760000,,,Morgan Dollars
+14,1889,CC,Dollar,Morgan,,United States,VF-30,1.00,1500,1100,1350,Y,,Silver,26.73,0,0,0,Safe,,,,,,Y,2026-01-15,PCGS,45678904,VF30,350000,,,Morgan Dollars
+15,1921,D,Dollar,Morgan,,United States,AU-55,1.00,65,45,62,,,Silver,26.73,0,0,0,Safe,,,,,,Y,2026-01-15,,,,20345000,,,Morgan Dollars
+16,1922,P,Dollar,Peace,,United States,MS-62,1.00,55,40,52,,,Silver,26.73,0,0,0,Safe,,,,,,Y,2026-01-15,,,,51737000,,,Peace Dollars
+17,1896,,Cent,Indian Head,,United States,G-4,0.01,4,2,4,,,Copper,3.11,0,0,0,Safe,,,,,,Y,2026-01-15,,,,,,,Indian Head Cents
+18,1908,S,Cent,Indian Head,,United States,F-12,0.01,190,120,175,Y,,Copper,3.11,0,0,0,Safe,,,,,,Y,2026-01-15,,,,1115000,,,Indian Head Cents
+19,1878,CC,Dollar,Morgan,,United States,,1.00,0,0,0,Y,,Silver,26.73,0,0,0,,,,,,,N,2026-01-15,,,,2212000,,,Morgan Dollars
+20,1893,S,Dollar,Morgan,,United States,,1.00,0,0,0,Y,,Silver,26.73,0,0,0,,,,,,,N,2026-01-15,,,,100000,,,Morgan Dollars
+21,1949,S,Half Dollar,Franklin,,United States,MS-63,0.50,45,30,44,,,Silver,12.50,0,0,0,Safe,,,,,,Y,2026-01-15,,,,3744000,,,Franklin Halves
+22,2021,P,Dollar,Silver Eagle,Type 2,United States,MS-70,1.00,55,48,55,,,Silver,31.10,0,0,0,Safe,,,,,,Y,2026-01-15,NGC,6789012-010,MS70,,,,American Silver Eagles
+23,1986,,Dollar,Silver Eagle,,United States,MS-69,1.00,60,40,60,,,Silver,31.10,0,0,0,Safe,,,,,,Y,2026-01-15,PCGS,56789015,MS69,5393005,,,American Silver Eagles
+24,1907,P,Cent,Indian Head,,United States,VG-8,0.01,6,3,6,,,Copper,3.11,0,0,0,Safe,,,,,,Y,2026-01-15,,,,,,,Indian Head Cents
